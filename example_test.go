@@ -9,10 +9,7 @@ import (
 
 func ExampleTrustTLSConfig() {
 	client := http.Client{
-		Transport: &http.Transport{
-			// Must be set to trustme.TrustedCertPool()
-			TLSClientConfig: trustme.TrustTLSConfig(nil),
-		},
+		Transport: trustme.TrustHTTPTransport(nil),
 	}
 
 	res, err := client.Get("https://www.example.com")
