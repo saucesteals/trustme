@@ -41,7 +41,6 @@ func ReplaceDefaultHTTPCertPool() {
 	if !ok {
 		return // ignore silently
 	}
-
 	transport.TLSClientConfig = TrustTLSConfig(transport.TLSClientConfig)
 }
 
