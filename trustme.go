@@ -17,6 +17,7 @@ var (
 	pem []byte
 )
 
+// Trust replaces the system CAs from crypto/x509.systemRoots with Mozilla CAs
 func Trust() error {
 	x509.SystemCertPool()
 	roots := x509.NewCertPool()
