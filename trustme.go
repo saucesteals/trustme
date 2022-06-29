@@ -55,7 +55,7 @@ func TrustTLSConfig(config *tls.Config) *tls.Config {
 	return config
 }
 
-// TrustTLSConfig sets the http.Transport's RootCAs to trustme.trustedRoots.
+// TrustHTTPTransport sets the http.Transport's RootCAs to trustme.trustedRoots.
 // It returns the same http.Transports or a new one if the one provided was nil.
 func TrustHTTPTransport(transport *http.Transport) *http.Transport {
 	if transport == nil {
