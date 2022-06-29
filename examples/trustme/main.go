@@ -1,19 +1,45 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
 	"strings"
 
 	"github.com/saucesteals/trustme"
 )
 
 var (
-	Version = "v0.0.0"
+	Version = "0.0.0"
+	isDev   = strings.HasSuffix(Version, "dev")
 )
 
 func main() {
-	if !strings.HasSuffix(Version, "development") {
-		trustme.Trust() // The error returned is generally safe to ignore
-		fmt.Println("[!] Now in a safe environment")
+	if !isDev {
+		trustme.Trust()
 	}
+}
+
+func customHTTPClient() {
+	client := http.Client{}
+
+	if !isDev {
+		client.Transport = trustme.TrustHTTPTransport(nil)
+	}
+
+	res, err := client.Get("https://www.example.com")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer res.Body.Close()
+
+}
+
+func defaultHTTPClient() {
+	res, err := http.Get("https://www.example.com")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer res.Body.Close()
 }

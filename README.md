@@ -1,24 +1,11 @@
-# Trust your TLS/SSL environment
+# Trust your TLS environment
 
-Example
+### Documentation
 
-```go
-package main
+- [API Reference](https://pkg.go.dev/github.com/saucesteals/trustme?tab=doc)
 
-import (
-	"fmt"
-	"strings"
-	"github.com/saucesteals/trustme"
-)
+### Installation
 
-var (
-	Version = "v0.0.0"
-)
-
-func main() {
-	if !strings.HasSuffix(Version, "development") {
-		trustme.Trust() // The error returned is generally safe to ignore
-		fmt.Println("[!] Now in a safe environment")
-	}
-}
+```sh
+go get github.com/saucesteals/trustme
 ```
