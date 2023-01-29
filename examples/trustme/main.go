@@ -17,6 +17,8 @@ func main() {
 	if !isDev {
 		trustme.Trust()
 	}
+	customHTTPClient()
+	defaultHTTPClient()
 }
 
 func customHTTPClient() {
